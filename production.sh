@@ -182,7 +182,7 @@ if ! [[ $* = *--zombie* ]]; then
   echo "Configuration Complete, you can watch annealing from the UI.  \`su - crowbar\` to begin managing the system."
   # Converge the admin node.
   crowbar converge && date
-  echo "Could not converge all noderoles!"
+  echo "Converging all noderoles! (check the Annealer for progress)"
 else
   echo "To complete configuration, mark node alive using: crowbar nodes update 1 '{""alive"": true}'"
 fi
