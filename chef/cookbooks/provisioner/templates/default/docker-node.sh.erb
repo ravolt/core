@@ -117,7 +117,7 @@ mkdir -p /var/run/sshd
 pkill -9 sshd
 $(which sshd)
 
-which chef-solo &>/dev/null || curl -L https://www.opscode.com/chef/install.sh | bash
+which chef-solo &>/dev/null || curl -L http://www.opscode.com/chef/install.sh | bash
 curl -g -f -u "$CROWBAR_KEY" --digest -L -X PUT -d 'alive=false' '<%=@admin_url%>/api/v2/nodes/<%=@name%>'
 curl -g -f -u "$CROWBAR_KEY" --digest -L -X PUT -d 'alive=true' '<%=@admin_url%>/api/v2/nodes/<%=@name%>'
 

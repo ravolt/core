@@ -33,7 +33,7 @@ wsman_ver=node["bootstrap"]["openwsman"]["version"]
 
 bash "clone openwsman from #{wsman_repo}" do
   cwd "/root"
-  code "git clone https://github.com/openwsman/openwsman"
+  code "git clone http://github.com/openwsman/openwsman"
   not_if "test -d /root/openwsman/.git"
   not_if "fgrep -q '#{wsman_ver}' '#{tracedir}/openwsman'"
 end

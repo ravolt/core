@@ -30,7 +30,7 @@ goball = "go#{node["bootstrap"]["gover"]}.linux-amd64.tar.gz"
 bash "Fetch and install Go" do
   code <<EOC
 set -e
-curl -fgL -o '/tmp/#{goball}' 'https://storage.googleapis.com/golang/#{goball}'
+curl -fgL -o '/tmp/#{goball}' 'http://storage.googleapis.com/golang/#{goball}'
 rm -rf /usr/local/go
 tar -C '/usr/local' -xzf '/tmp/#{goball}'
 rm '/tmp/#{goball}'
