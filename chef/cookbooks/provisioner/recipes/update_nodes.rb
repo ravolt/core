@@ -95,6 +95,14 @@ new_clients = {}
       target mnode_name
       action :add
     end
+  when "centos-6.5-install"
+    provisioner_redhat mnode_name do
+      distro "centos"
+      version "6.5"
+      address mac_list
+      target mnode_name
+      action :add
+    end
   when "centos-6.6-install"
     provisioner_redhat mnode_name do
       distro "centos"
@@ -188,4 +196,11 @@ end
   end
   a.run_action(:remove)
 end
+
+
+bash "Restore selinux contexts for #{tftproot}" do
+  code "restorecon -R -F #{tftproot}"
+  only_if "which selinuxenabled && selinxenabled"
+end
+
 node.normal["crowbar_wall"]["dhcp"]["clients"]=new_clients
