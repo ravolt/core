@@ -24,7 +24,7 @@ check_hostname
 
 [[ $FQDN ]] || export FQDN="$(hostname)"
 
-DOMAINNAME=${FQDN#*.}
+export DOMAINNAME=${FQDN#*.}
 HOSTNAME=${FQDN%%.*}
 
 if [[ $http_proxy && !$upstream_proxy ]] && ! pidof squid; then

@@ -164,6 +164,13 @@ makenics(){
         local nic_name="vm-$VMID-${idx}"
         maketap "$nic_name" "$OCB_BRIDGE"
         getmac
+        if [ $idx == 0 ]; then
+            local vm_name="d${MACADDR//:/-}"
+            echo == TO PRECREATE NODE, run these steps on the admin node:
+            echo   crowbar nodes create "\"{\\\"name\\\":\\\"$vm_name.\$DOMAINNAME\\\",\\\"mac\\\":\\\"$MACADDR\\\"}\""
+            echo   crowbar roles bind crowbar-managed-node to \"$vm_name.\$DOMAINNAME\"
+            echo   crowbar nodes commit \"$vm_name.\$DOMAINNAME\"
+        fi
         vm_nics+=("$MACADDR,$nic_name")
     done
 }
