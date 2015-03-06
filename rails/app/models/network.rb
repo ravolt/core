@@ -17,7 +17,8 @@ class Network < ActiveRecord::Base
   ADMIN_NET      = "admin"
   BMC_NET        = "bmc"
   V6AUTO         = "auto"   # if this changes, update the :v6prefix validator too!
-  DEFAULTCONDUIT = '1g1'
+  DEFAULTCONDUIT = '1g0'
+  CONDUIT_SPEEDS = %w{10m 100m 1g 10g 40g}
   BMCCONDUIT     = 'bmc'
 
   validate        :check_network_sanity

@@ -238,7 +238,7 @@ def resolve_conduit(conduit)
     return ["eth0"]
   end
   known_ifs = node["crowbar"]["sorted_ifs"]
-  speeds = %w{10m 100m 1g 10g}
+  speeds = %w{10m 100m 1g 10g 40g}
   intf_re = /^([-+?]?)(\d{1,3}[mg])(\d+)$/
   finders = conduit.split(',').map{|f|f.strip}
   raise "#{conduit} does not want any interfaces!" if finders.nil? || finders.empty?

@@ -33,6 +33,36 @@ class NetworkAllocation < ActiveRecord::Base
     write_attribute("address",IP.coerce(addr).to_s)
   end
 
+  # rough way to guess port mappings
+  def guess_interface(nics)
+
+    # parse conduit
+    unless network_range.conduit =~ /^([-+?]*)(\d{1,3}[mg])(\d+)$/
+      return nil
+    end
+    direction = $1
+    speed = $2
+    pos = $3
+    speed_pos = Network::CONDUIT_SPEEDS.find_index speed
+    # narrow choices to match conduit
+    seeking = case direction
+        when "+" then Network::CONDUIT_SPEEDS[speed_pos+1..100]
+        when "-" then Network::CONDUIT_SPEEDS[0..speed_pos-1]
+        when "?" then Network::CONDUIT_SPEEDS[speed_pos..100]
+        else Network::CONDUIT_SPEEDS[speed_pos]
+    end
+    # find matching interfaces (assume ordering)
+    nic = nics.keys[pos.to_i] rescue nil
+    if nic.nil?
+      return I18n.t('network_allocation.guess.no_nic')
+    elsif nics[nic]['speeds'].include? speed
+      return nic
+    else
+      return I18n.t('network_allocation.guess.no_speed')
+    end
+
+  end
+
   private
 
   def sanity_check_address

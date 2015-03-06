@@ -46,6 +46,7 @@
       %th= t ".range"
       %th= t ".address"
       %th= t ".conduit"
+      %th= t ".nic"
       %th= t ".vlan"
   %tbody
     - @node.network_allocations.order("id ASC").each do |a|
@@ -54,6 +55,7 @@
         %td= a.network_range.name
         %td= a.address.to_s
         %td= a.network_range.conduit
+        %td= a.guess_interface(@node.attrib_nics) || t('unknown')
         %td= a.network_range.use_vlan? ? a.network_range.vlan : t("none")
 
 %h3= t '.node_roles'

@@ -182,7 +182,10 @@ en:
       raise: "deployment must be active or error to propose"
     recall: "Interrupted_%{name}"
     recall_status: "Deployment recalled by user action"
-
+  network_allocation:
+    guess:
+      no_speed: "speed not found"
+      no_nic: "NIC not found"
   node_role:
     data_parse_error: "NodeRole data was not valid agaist schema"
     cannot_edit_data: "NodeRole data can only be edited in the Proposed state"
@@ -341,6 +344,7 @@ en:
       client: Client
     show:
       roles: "Roles"
+
   nodes:
     index:
       title: "Nodes"
@@ -363,6 +367,7 @@ en:
       value: "Value"
       name: Full Name
       mac: MAC Address
+      nic: "Likely NIC"
       allocated: Allocated
       deployment: Deployment
       ip: IP Address
@@ -515,6 +520,8 @@ en:
       node: "Node"
       cohort: "Cohort"
   support:
+    bootstrap:
+      admin_net: "Admin"
     index:
       title: Exported Items
       none_exported: There are no exported files to download
