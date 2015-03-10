@@ -68,17 +68,18 @@ json_value_quoted(Value, [$\\, $" | T]) ->
 % handles values that are quoted (this one ends the quote)
 json_value_quoted(Value, [$" | T]) ->
   #jsonkv{value=Value, raw=T};
-  
+
 json_value_quoted(Value, [Next | T]) ->
   json_value_quoted(Value ++ [Next], T).
   
 % returns JSON Key Values with remaining JSON
+json_value([], [$\s | RawJSON]) -> json_value([], RawJSON);
+json_value([], [$t, $r, $u, $e | RawJSON]) -> #jsonkv{value=true, raw=RawJSON};
+json_value([], [$f, $a, $l, $s, $e | RawJSON]) -> #jsonkv{value=false, raw=RawJSON};
+json_value([], [$n, $u, $l, $l | RawJSON]) -> #jsonkv{value=null, raw=RawJSON};
 json_value(Value, RawJSON) ->
   [Next | T] = RawJSON, 
   case Next of
-% omit this test because the json should be formatted correctly, this is reall a cheat for bad quoting!
-%    $: -> bdd_utils:log(error, json, json_value, "unexpected : before ~p building value ~p", [T, Value]), 
-%          throw('unexpected token : in value');
     $" -> json_value_quoted(Value, T);                        % run to next quote,exit
     ${ -> J = json(#json{raw=RawJSON}, []),                   % recurse to get list
             #jsonkv{value=J#json.list, raw=J#json.raw};  
