@@ -15,7 +15,7 @@
 
 -module(dev).
 -export([pop/0, pop/1, unpop/0, g/1]).  
--export([watch/1, watch/2]).  
+-export([watch/1, watch/2, add_node/1]).  
 -include("bdd.hrl").
 
 g(Item)         -> 
@@ -95,13 +95,15 @@ remove(Atom) ->
   bdd_utils:log(info, dev, remove, "Removed ~p with status ~p", [Atom, Msg]).
 
 add_node({Atom, Name, Description, Order, Group}) ->
+  add_node({Atom, Name, Description, Order, Group, "node_discovery"});
+add_node({Atom, Name, Description, Order, Group, DataFile}) ->
   Path = bdd_restrat:alias(node, g, [path]),
   Obj = bdd_crud:read_obj(Path,Name),
   case Obj#obj.id of
     "-1" -> O = node:add_node(Name, [{description, Description}, {order, Order}, {group, Group}], Atom),
           bdd_utils:log(info, node, create_node, "Node ~p created (id ~p)", [Name, O#obj.id]),
           % load test data
-          crowbar:step([], {step_given, {0, 1}, ["test loads the","node_discovery","data into",node, Name]}),
+          crowbar:step([], {step_given, {0, 1}, ["test loads the",DataFile,"data into",node, Name]}),
           O;
     _  -> bdd_utils:config_set(Atom, Obj),
           bdd_utils:log(info, "Node ~p already exists (~p)", [Name, Obj#obj.id]),

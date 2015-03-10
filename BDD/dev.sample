@@ -3,9 +3,10 @@
           {node2, "node2.cr0wbar.com", "Some Populated Information!", 260, "Rack1"},
           {node3, "node3.cr0wbar.com", "More Populated Information!", 270, "Rack1"},
           {node4, "node4.cr0wbar.com", "Extra Populated Information!", 280, "Rack1"},
-          {node5, "node5.cr0wbar.com", "Populated Information!", 290, "Rack2"},
-          {node6, "node6.cr0wbar.com", "Populated Information!", 300, "Rack2"},
-          {node7, "node7.cr0wbar.com", "Populated Information!", 210, "Rack2"}
+          {node5, "node5.cr0wbar.com", "Populated Information!", 290, "Rack2", "node_discovery_x7spa"},
+          {node6, "node6.cr0wbar.com", "Populated Information!", 300, "Rack2", "node_discovery_kvm"},
+          {node7, "node7.cr0wbar.com", "Populated Information!", 210, "Rack2", "node_discovery"}
+
         ]}.
 {attrib_types, [ {attrib_type0, "uptime", "System Up Time", 100, "integer"},
             {attrib_type0, "cpu_type", "CPU Type", 300, "string"}, 

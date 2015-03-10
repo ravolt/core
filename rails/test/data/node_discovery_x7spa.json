@@ -454,11 +454,19 @@
         "network":{  
           "eth0":{  
             "path":"0000:00/0000:00:1c.4/0000:02:00.0",
-            "speeds":"eth0"
+            "speeds":[
+                     "10m",
+                     "100m",
+                     "1g"
+                  ]
           },
           "eth1":{  
             "path":"0000:00/0000:00:1c.5/0000:03:00.0",
-            "speeds":"eth1"
+            "speeds":[
+                     "10m",
+                     "100m",
+                     "1g"
+                  ]
           }
         }
       },
@@ -533,9 +541,9 @@
             "Address":"0xF0000",
             "BIOS Revision":"8.16",
             "Characteristics":{  
-              "3.5\"/2.88 MB floppy services are supported (int 13h)":null,
-              "3.5\"/720 kB floppy services are supported (int 13h)":null,
-              "5.25\"/1.2 MB floppy services are supported (int 13h)":null,
+              "3.5\\\"/2.88 MB floppy services are supported (int 13h)":null,
+              "3.5\\\"/720 kB floppy services are supported (int 13h)":null,
+              "5.25\\\"/1.2 MB floppy services are supported (int 13h)":null,
               "8042 keyboard services are supported (int 9h)":null,
               "ACPI is supported":null,
               "ATAPI Zip drive boot is supported":null,
@@ -1465,7 +1473,7 @@
       }
     },
     "fqdn":"d0c-c4-7a-14-a5-90.rackn.com",
-    "get_supported_speeds":"eth1",
+    "get_supported_speeds":"100m 1g",
     "hostname":"d0c-c4-7a-14-a5-90",
     "idletime":"16 minutes 04 seconds",
     "idletime_seconds":964,
