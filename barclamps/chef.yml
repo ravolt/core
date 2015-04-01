@@ -58,3 +58,11 @@ roles:
       - name: chef-solo_client_name
         description: 'The client name that chef-solo should use'
         map: 'crowbar/chef-solo/name'
+  - name: chef-ready
+    description: "Chef Provisioned Target"
+    jig: noop
+    requires:
+      - crowbar-installed-node
+    flags:
+      - milestone
+      - implicit
