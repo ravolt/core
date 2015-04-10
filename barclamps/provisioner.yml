@@ -14,7 +14,7 @@
 #
 roles:
   - name: provisioner-server
-    jig: chef
+    jig: chef-solo
     requires:
       - network-admin
       - dns-client
@@ -53,7 +53,7 @@ roles:
           required: true
           pattern: '/\Ahttp:\/\/.+\z/'
   - name: provisioner-base-images
-    jig: chef
+    jig: chef-solo
     attribs:
       - name: provisioner-package-repos
         description: 'The packages repositories that managed nodes should use to install packages.'
@@ -69,7 +69,7 @@ roles:
       - dns-domain
       - dns_servers
   - name: provisioner-repos
-    jig: chef
+    jig: chef-solo
     requires:
       - network-admin
       - provisioner-server
@@ -82,14 +82,14 @@ roles:
       - provisioner-webserver
       - provisioner-online
   - name: provisioner-database
-    jig: chef
+    jig: chef-solo
     requires:
       - provisioner-server
       - provisioner-base-images
     wants-attribs:
       - dns-domain
   - name: provisioner-docker-setup
-    jig: chef
+    jig: chef-solo
     conflicts:
       - crowbar-docker-node
     requires:

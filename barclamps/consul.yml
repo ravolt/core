@@ -15,7 +15,7 @@
 roles:
   - name: consul
     description: "Consul is our default service monitoring and discovery tool."
-    jig: chef
+    jig: chef-solo
     flags:
       - bootstrap
       - implicit

@@ -15,7 +15,7 @@
 
 roles:
   - name: dns-server
-    jig: chef
+    jig: chef-solo
     requires:
       - network-admin
       - consul
@@ -29,7 +29,7 @@ roles:
             - type: str
               pattern: /[0-9a-f:.]*/
   - name: dns-database
-    jig: chef
+    jig: chef-solo
     requires:
       - dns-server
   - name: dns-service
@@ -52,7 +52,7 @@ roles:
           type: str
           required: true
   - name: dns-client
-    jig: chef
+    jig: chef-solo
     flags:
       - implicit
     requires:
@@ -72,7 +72,7 @@ roles:
   - name: dns-mgmt_shim_provider
     jig: noop
   - name: dns-mgmt_shim_crowbar_dns
-    jig: chef
+    jig: chef-solo
     provides:
       - dns-mgmt_shim_provider
   - name: dns-mgmt_shim_power_dns

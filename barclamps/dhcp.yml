@@ -14,14 +14,14 @@
 #
 roles:
   - name: dhcp-server
-    jig: chef
+    jig: chef-solo
     wants-attribs:
       - dns_servers
     requires:
       - network-admin
       - dns-client
   - name: dhcp-database
-    jig: chef
+    jig: chef-solo
     wants-attribs:
       - dns_servers
     requires:

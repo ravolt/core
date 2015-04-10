@@ -15,7 +15,7 @@
 
 roles:
   - name: logging-server
-    jig: chef
+    jig: chef-solo
     requires:
       - dns-client
       - network-admin
@@ -24,7 +24,7 @@ roles:
         description: "The IP addresses of the server that should get all logging output."
         map: 'crowbar/logging/servers'
   - name: logging-client
-    jig: chef
+    jig: chef-solo
     flags:
       - implicit
     requires:
