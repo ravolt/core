@@ -15,7 +15,7 @@
 
 roles:
   - name: ntp-server
-    jig: chef
+    jig: chef-solo
     provides:
       - ntp-client
     requires:
@@ -45,7 +45,7 @@ roles:
             - type: str
               pattern: /[0-9a-f:.]*/
   - name: ntp-client
-    jig: chef
+    jig: chef-solo
     requires:
       - dns-client
       - ntp-service

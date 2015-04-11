@@ -37,7 +37,7 @@ roles:
                     - type: str
                       pattern: /[0-9a-fA-F]{4}\:[0-9a-fA-F]{2}\/[0-9a-fA-F]{4}\:[0-9a-fA-F]{2}\:[0-9a-fA-F]{2}/
   - name: network-lldpd
-    jig: chef
+    jig: chef-solo
     requires:
       - network-admin
       - provisioner-server
